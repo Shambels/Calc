@@ -1,0 +1,68 @@
+body {
+   background-color: #f9fafc !important;
+}
+
+.my-4 {
+   margin: 4rem 0 !important;
+}
+
+.m-1 {
+   width: 33px;
+   height: 33px;
+   margin: .2rem;
+   text-align: center;
+}
+
+.ml-2 {
+   margin-left: 1rem;
+}
+
+#calculator {
+   width: 21rem;
+   text-align: center;
+   background-color: rgb(172, 170, 170);
+   border-radius: 2rem;
+}
+
+#calculator_display {
+   margin: 0 1.7rem 1rem 1.7rem;
+   text-align: right;
+   background-color: lightblue;
+   border: white solid 1px;
+   width: 15.5rem;
+   border-radius: 1rem;
+   padding-right: 1rem;
+}
+
+.btn {
+   border-radius: 2rem;
+}
+
+.form-control {
+   width: 10%;
+   display: inline;
+}
+
+.key--operator {
+   background-color: grey;
+}
+
+.cc {
+   background-color: rgb(140, 162, 182);
+   padding-left: 7px;
+   padding-bottom: 3px;
+}
+
+.percent {
+   padding-left: 10px;
+   background-color: rgba(128, 128, 128, 0.541);
+}
+
+.power {
+   color: rgb(172, 170, 170);
+   background-color: rgb(172, 170, 170);
+}
+
+.c {
+   background-color: rgb(211, 139, 45);
+}
