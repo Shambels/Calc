@@ -3,6 +3,7 @@
   "version": "",
   "dependencies": {
     "admin-lte": "^2.4.8",
+    "math-from-string": "^2.0.0",
     "p5": "^0.7.1",
     "string-math": "^1.2.1"
   }

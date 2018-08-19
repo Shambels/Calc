@@ -1,3 +1,5 @@
+"use strict";
+
 var inputNL = document.getElementsByTagName("input");
 var inputArr = Array.from(inputNL);
 var spanNL = document.getElementsByTagName("span");
@@ -97,81 +99,77 @@ var calculator = document.getElementById("calculator");
 var boutonsNL = calculator.getElementsByClassName("btn");
 var boutons = Array.from(boutonsNL);
 var display = document.getElementById("calculator_display");
+var ecran = display.value;
+var square = /\²/;
+var cube = /\³/;
+var powersymbol = /\^/;
+var percent = /\%/;
 
 function addConcat(targetTxt) {
-   display.value += targetTxt;
+   if (display.value.length == 0 && targetTxt == ".") {
+      display.value = "0" + targetTxt;
+      display.focus()
+   } else if (display.value == 0) {
+      display.value = targetTxt;
+   } else {
+      display.value += targetTxt;
+      display.focus();
+   }
 }
 
 function clear() {
    display.value = "";
+   display.focus();
 }
 
 function ce() {
-   display.value = display.value.substr(0, display.value.length - 1)
+   display.value = display.value.substr(0, display.value.length - 1);
+   display.focus();
 }
 
 function calc() {
-   if (display.value.includes("^") == true) {
-      power();
-   }
-   var resultat = display.value;
-   display.value = stringMath(resultat);
+   power();
+   var calcul = display.value;
+   display.value = mathFromString(calcul);
+   display.focus();
 }
-
-function percent() {
-   calc();
-   display.value = display.value / 100;
-
-
+// function percent() {
+//    while (display.value.indexOf("%"))
+//    display.value = display.value / 100;
+//    display.focus();
+// }
+function power() {
+   while (display.value.includes("²") == true) {
+      var squares = display.value.match(square)
+      display.value = display.value.replace(squares[0], "**2")
+   }
+   while (display.value.includes("³") == true) {
+      var cubes = display.value.match(cube)
+      display.value = display.value.replace(cubes[0], "**3")
+   }
+   while (display.value.includes("^") == true) {
+      var powersymbols = display.value.match(powersymbol);
+      console.log(powersymbols[0]);
+      display.value = display.value.replace(powersymbols[0], "**");
+   }
 }
 
 function checkKey() {
    if (window.event.keyCode == '13') {
       calc();
-   } else if (window.event.keyCode == '192') {
-      percent();
    }
+   /* else if (window.event.keyCode == '192') {
+           percent();
+        } */
 }
-function checkKeyUp() {
-   if (window.event.keyCode == '192') {
-      setTimeout(() => {
-         display.value = display.value.substr(0, display.value.length - 1)
-      }, 1);
-   }
-}
-function expose() {
-   var i = expIndex
-   while (i>0 && (display.value[i] !=("+" || "-" || "*" || "/" || "(" || ")"))) {
-      i--
-   }return i;
-}
-function exposeFin() {
-   var i = expIndex + 1
-   while (i<display.value.length && (display.value[i] !=("+" || "-" || "*" || "/" || "(" || ")" || "^"))) {
-      i++
-   }return i;
-}
-var expIndex;
-function power() {
-   expIndex = display.value.indexOf("^")
-   var aIndex = expose();
-   var bIndex =  exposeFin();
-   var a = parseFloat(display.value.substring(aIndex, expIndex))
-   var b = parseFloat(display.value.substring(expIndex + 1, bIndex))
-   var powervalue = Math.pow(a, b);
-   // var aplusb = a+"^"+b
-   // var stringaplusb= aplusb.join();
-   // console.dir(stringaplusb);
-   // display.value.replace(stringaplusb, powervalue);
-   // console.dir(display.value);
-   var arrDisplay = Array.from(display.value);
-   console.dir(arrDisplay);
-   arrDisplay.splice(aIndex,(bIndex-aIndex), powervalue);
-   var stringDisplay = arrDisplay.join('');
-   display.value = stringDisplay;
-   console.dir(stringDisplay);
-};
-display.addEventListener('keyup',checkKeyUp)
+// function checkKeyUp() {
+//    if (window.event.keyCode == '192') {
+//       setTimeout(() => {
+//          display.value = display.value.substr(0, display.value.length - 1)
+//       }, 1);
+//    }
+// }
+// display.addEventListener('keyup',checkKeyUp)
 display.addEventListener("keydown", checkKey);
 boutons.forEach(element => {
    if (element.innerText != "=" && element.innerText != "C" && element.innerText != "CE" && element.innerText != "%") {
@@ -183,8 +181,11 @@ boutons.forEach(element => {
    } else if (element.innerText == "CE") {
       element.addEventListener('click', ce);
    } else if (element.innerText == "=") {
-      element.addEventListener('click', calc);
+      element.addEventListener('click', () => calc());
    } else if (element.innerText == "%") {
       element.addEventListener('click', percent)
    }
 });
+
+//A FAIRE :
+// 2eme etage

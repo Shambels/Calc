@@ -59,8 +59,7 @@ body {
 }
 
 .power {
-   color: rgb(172, 170, 170);
-   background-color: rgb(172, 170, 170);
+   background-color: rgba(128, 128, 128, 0.541);
 }
 
 .c {
