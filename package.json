@@ -2,9 +2,9 @@
   "name": "",
   "version": "",
   "dependencies": {
-    "admin-lte": "^2.4.8",
+    "admin-lte": "^2.4.10",
     "math-from-string": "^2.0.0",
-    "p5": "^0.7.1",
+    "p5": "^0.7.3",
     "string-math": "^1.2.1"
   }
 }

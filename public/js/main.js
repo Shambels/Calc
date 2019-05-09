@@ -138,6 +138,9 @@ function calc() {
 //    display.value = display.value / 100;
 //    display.focus();
 // }
+/**
+ * Reads input. Then translates '²', '³' & '^' with '**' notations
+ */
 function power() {
    while (display.value.includes("²") == true) {
       var squares = display.value.match(square)
@@ -187,5 +190,5 @@ boutons.forEach(element => {
    }
 });
 
-//A FAIRE :
-// 2eme etage
+//TO DO:
+// 2nd Input
